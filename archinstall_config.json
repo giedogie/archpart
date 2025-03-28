@@ -32,25 +32,44 @@
               "filesystem": "ext4",
               "format": true,
               "mountpoint": "/",
-              "size": "80GiB"
+              "size": "80GiB",
+              "encrypt": true,
+              "encryption_type": "luks",
+              "encryption_name": "cryptroot"
           },
           {
               "device": "/dev/nvme0n1p4",
               "filesystem": "ext4",
               "format": true,
               "mountpoint": "/var",
-              "size": "120GiB"
+              "size": "120GiB",
+              "encrypt": true,
+              "encryption_type": "luks",
+              "encryption_name": "cryptvar"
           },
           {
               "device": "/dev/nvme0n1p5",
               "filesystem": "ext4",
               "format": true,
               "mountpoint": "/home",
-              "size": "100%"
+              "size": "100%",
+              "encrypt": true,
+              "encryption_type": "luks",
+              "encryption_name": "crypthome"
           }
       ]
   },
-  "disk_encryption": null,
+  "disk_encryption": {
+      "encryption_password": "",
+      "encryption_type": "luks",
+      "partitions": [
+          "/dev/nvme0n1p3",
+          "/dev/nvme0n1p4",
+          "/dev/nvme0n1p5"
+      ],
+      "used_for_block_devices": true,
+      "use_same_password": true
+  },
   "hostname": "n01",
   "kernels": [
       "linux-hardened",
