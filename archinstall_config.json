@@ -1,0 +1,48 @@
+{
+    "disk_layout": {
+      "/dev/sda": {
+        "wipe": true,
+        "partitions": [
+          {
+            "type": "primary",
+            "start": "1MiB",
+            "size": "512MiB",
+            "boot": true,
+            "esp": true,
+            "mountpoint": "/boot",
+            "filesystem": {"format": "fat32"}
+          },
+          {
+            "type": "primary",
+            "start": "513MiB",
+            "size": "8GiB",
+            "filesystem": {"format": "swap"}
+          },
+          {
+            "type": "primary",
+            "start": "8.5GiB",
+            "size": "80GiB",
+            "mountpoint": "/",
+            "filesystem": {"format": "ext4"}
+          },
+          {
+            "type": "primary",
+            "start": "88.5GiB",
+            "size": "120GiB",
+            "mountpoint": "/var",
+            "filesystem": {"format": "ext4"}
+          },
+          {
+            "type": "primary",
+            "start": "208.5GiB",
+            "size": "100%",
+            "mountpoint": "/home",
+            "filesystem": {"format": "ext4"}
+          }
+        ]
+      }
+    },
+    "hostname": "archlinux",
+    "bootloader": "systemd-bootctl",
+    "swap": true
+  }
