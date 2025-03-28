@@ -9,60 +9,46 @@
   "bootloader": "Grub",
   "config_version": "3.0.2",
   "disk_config": {
-      "config_type": "custom",
-      "device_modifications": {
-          "/dev/nvme0n1": {
-              "wipe": true,
-              "partitions": [
-                  {
-                      "boot": true,
-                      "esp": true,
-                      "filesystem": {
-                          "format": "fat32"
-                      },
-                      "mountpoint": "/boot",
-                      "size": "512MiB",
-                      "start": "1MiB",
-                      "type": "primary"
-                  },
-                  {
-                      "filesystem": {
-                          "format": "swap"
-                      },
-                      "size": "8GiB",
-                      "start": "513MiB",
-                      "type": "primary"
-                  },
-                  {
-                      "filesystem": {
-                          "format": "ext4"
-                      },
-                      "mountpoint": "/",
-                      "size": "80GiB",
-                      "start": "8.5GiB",
-                      "type": "primary"
-                  },
-                  {
-                      "filesystem": {
-                          "format": "ext4"
-                      },
-                      "mountpoint": "/var",
-                      "size": "120GiB",
-                      "start": "88.5GiB",
-                      "type": "primary"
-                  },
-                  {
-                      "filesystem": {
-                          "format": "ext4"
-                      },
-                      "mountpoint": "/home",
-                      "size": "100%",
-                      "start": "208.5GiB",
-                      "type": "primary"
-                  }
-              ]
+      "config_type": "manual_partitioning",
+      "manual_partitions": [
+          {
+              "boot": true,
+              "device": "/dev/nvme0n1p1",
+              "esp": true,
+              "filesystem": "fat32",
+              "format": true,
+              "mountpoint": "/boot",
+              "size": "512MiB"
+          },
+          {
+              "device": "/dev/nvme0n1p2",
+              "filesystem": "swap",
+              "format": true,
+              "mountpoint": null,
+              "size": "8GiB"
+          },
+          {
+              "device": "/dev/nvme0n1p3",
+              "filesystem": "ext4",
+              "format": true,
+              "mountpoint": "/",
+              "size": "80GiB"
+          },
+          {
+              "device": "/dev/nvme0n1p4",
+              "filesystem": "ext4",
+              "format": true,
+              "mountpoint": "/var",
+              "size": "120GiB"
+          },
+          {
+              "device": "/dev/nvme0n1p5",
+              "filesystem": "ext4",
+              "format": true,
+              "mountpoint": "/home",
+              "size": "100%"
           }
-      }
+      ]
   },
   "disk_encryption": null,
   "hostname": "n01",
