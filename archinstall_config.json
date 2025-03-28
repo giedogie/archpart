@@ -1,48 +1,131 @@
 {
-    "disk_layout": {
-      "/dev/sda": {
-        "wipe": true,
-        "partitions": [
-          {
-            "type": "primary",
-            "start": "1MiB",
-            "size": "512MiB",
-            "boot": true,
-            "esp": true,
-            "mountpoint": "/boot",
-            "filesystem": {"format": "fat32"}
-          },
-          {
-            "type": "primary",
-            "start": "513MiB",
-            "size": "8GiB",
-            "filesystem": {"format": "swap"}
-          },
-          {
-            "type": "primary",
-            "start": "8.5GiB",
-            "size": "80GiB",
-            "mountpoint": "/",
-            "filesystem": {"format": "ext4"}
-          },
-          {
-            "type": "primary",
-            "start": "88.5GiB",
-            "size": "120GiB",
-            "mountpoint": "/var",
-            "filesystem": {"format": "ext4"}
-          },
-          {
-            "type": "primary",
-            "start": "208.5GiB",
-            "size": "100%",
-            "mountpoint": "/home",
-            "filesystem": {"format": "ext4"}
+  "additional-repositories": [
+      "multilib"
+  ],
+  "archinstall-language": "English",
+  "audio_config": {
+      "audio": "pipewire"
+  },
+  "bootloader": "Grub",
+  "config_version": "3.0.2",
+  "disk_config": {
+      "config_type": "custom",
+      "device_modifications": {
+          "/dev/nvme0n1": {
+              "wipe": true,
+              "partitions": [
+                  {
+                      "boot": true,
+                      "esp": true,
+                      "filesystem": {
+                          "format": "fat32"
+                      },
+                      "mountpoint": "/boot",
+                      "size": "512MiB",
+                      "start": "1MiB",
+                      "type": "primary"
+                  },
+                  {
+                      "filesystem": {
+                          "format": "swap"
+                      },
+                      "size": "8GiB",
+                      "start": "513MiB",
+                      "type": "primary"
+                  },
+                  {
+                      "filesystem": {
+                          "format": "ext4"
+                      },
+                      "mountpoint": "/",
+                      "size": "80GiB",
+                      "start": "8.5GiB",
+                      "type": "primary"
+                  },
+                  {
+                      "filesystem": {
+                          "format": "ext4"
+                      },
+                      "mountpoint": "/var",
+                      "size": "120GiB",
+                      "start": "88.5GiB",
+                      "type": "primary"
+                  },
+                  {
+                      "filesystem": {
+                          "format": "ext4"
+                      },
+                      "mountpoint": "/home",
+                      "size": "100%",
+                      "start": "208.5GiB",
+                      "type": "primary"
+                  }
+              ]
           }
-        ]
       }
-    },
-    "hostname": "archlinux",
-    "bootloader": "systemd-bootctl",
-    "swap": true
-  }
+  },
+  "disk_encryption": null,
+  "hostname": "n01",
+  "kernels": [
+      "linux-hardened",
+      "linux-lts",
+      "linux-zen"
+  ],
+  "locale_config": {
+      "kb_layout": "pl",
+      "sys_enc": "UTF-8",
+      "sys_lang": "pl_PL.UTF-8"
+  },
+  "mirror_config": {
+      "custom_mirrors": [],
+      "mirror_regions": {
+          "Poland": [
+              "http://arch.midov.pl/arch/$repo/os/$arch",
+              "https://arch.midov.pl/arch/$repo/os/$arch",
+              "http://ftp.icm.edu.pl/pub/Linux/dist/archlinux/$repo/os/$arch",
+              "https://ftp.icm.edu.pl/pub/Linux/dist/archlinux/$repo/os/$arch",
+              "http://mirror.juniorjpdj.pl/archlinux/$repo/os/$arch",
+              "https://mirror.juniorjpdj.pl/archlinux/$repo/os/$arch",
+              "http://ftp.psnc.pl/linux/archlinux/$repo/os/$arch",
+              "https://ftp.psnc.pl/linux/archlinux/$repo/os/$arch",
+              "http://arch.sakamoto.pl/$repo/os/$arch",
+              "https://arch.sakamoto.pl/$repo/os/$arch"
+          ]
+      }
+  },
+  "network_config": {
+      "type": "iso"
+  },
+  "ntp": true,
+  "packages": [
+      "git",
+      "nano"
+  ],
+  "parallel downloads": 0,
+  "profile_config": {
+      "gfx_driver": "All open-source",
+      "greeter": "sddm",
+      "profile": {
+          "custom_settings": {
+              "Hyprland": {
+                  "seat_access": "polkit"
+              }
+          },
+          "details": [
+              "Hyprland"
+          ],
+          "main": "Desktop"
+      }
+  },
+  "save_config": null,
+  "swap": true,
+  "timezone": "Europe/Warsaw",
+  "uki": false,
+  "version": "3.0.2",
+  "users": [
+      {
+          "sudo": true,
+          "username": "user"
+      }
+  ]
+}
